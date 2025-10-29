@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class AudioPause : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    AudioSource source;
+    BoxCollider soundTrigger;
+
+    private void Awake()
     {
-        
+        source = GetComponent<AudioSource>();
+        soundTrigger = GetComponent<BoxCollider>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(BoxCollider collider)
     {
-        
+        if (collider.gameObject.tag == "Player")
+        {
+            source.Play();
+        }
     }
 }
